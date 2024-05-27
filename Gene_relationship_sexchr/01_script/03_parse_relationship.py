@@ -3,7 +3,9 @@
 Script that parse a gff file and Orthofinder output to find ortholous genes between Y and X
 output one file with gene orthologues, one with genes with no match on one or the other chromosome
 and genes for which transcript are not clustered together
-Usage: parse_sex_orthologues.py <gff_file> <orthogroup_file.tsv> <output>
+Usage: parse_sex_orthologues.py <gff_file> <path_to_orthofinder_result>
+Parth to Orthofinder result exemple: "04_protein/Orthofinder/Results_Oct27"
+gff_file correspond to the focal species gff
 """
 
 #import modules
@@ -15,7 +17,7 @@ COMPCHROM = {"chrY", "chrXIX"}
 
 ##Parsing input
 gff_path = sys.argv[1]
-orthologue_path = sys.argv[2]
+orthologue_path = sys.argv[2].strip("/") + "/Orthogroups/Orthogroups.txt"
 out_path = 05_relationship_table/relationship_table.txt
 
 ##functions
