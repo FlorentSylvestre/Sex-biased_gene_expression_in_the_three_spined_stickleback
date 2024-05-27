@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Global variables
-SWISSPROT_HITS=04_blast_results/analyzed_genes.hits
-ANNOTATION_FOLDER=05_annotations/genbank_info
-FISHER_FOLDER=06_fisher_tests
+SWISSPROT_HITS=03_blast_results/analyzed_genes.hits
+ANNOTATION_FOLDER=04_annotations_transcripts/genbank_info
+FISHER_FOLDER=05_annotation_table
 
 # Get info from uniprot for each hit in parallel
 echo "Prepare uniprot sequences for retrieval"
