@@ -16,7 +16,7 @@ COMPCHROM = {"chrY", "chrXIX"}
 ##Parsing input
 gff_path = sys.argv[1]
 orthologue_path = sys.argv[2]
-out_path = sys.argv[3]
+out_path = 05_relationship_table/relationship_table.txt
 
 ##functions
 
