@@ -2,7 +2,7 @@
 
 # Global variables
 SWISSPROT_HITS=03_blast_results/analyzed_genes.hits
-ANNOTATION_FOLDER=04_annotations_transcripts/genbank_info
+ANNOTATION_FOLDER=04_annotations_transcript/genbank_info
 FISHER_FOLDER=05_annotation_table
 
 # Get info from uniprot for each hit in parallel
