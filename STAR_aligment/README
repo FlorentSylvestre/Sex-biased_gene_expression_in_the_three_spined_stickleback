@@ -1,0 +1,14 @@
+Pipeline used to clean, trim align and counts reads
+
+Setup:
+In 02_infos, you'll need:
+A) a file with all correspondance between sample names and sex (can be created from the medatafile)
+B) From that, you can create a file with all female sample names and another one with all male sample names
+
+In 03_Reférence you'll need:
+1)The annotation in GFF format
+2) A Female reference genome without the Y
+3) A Male reference genome including the Y but without the first 0.34Mb (the pseudoautosomal region, already present of the X reference)
+to exclude the pseudo autosomal region from the Y, you can use samtools faidx:
+samtools faidx <path the the male reference> #This will first create an index for the file
+samtools faidx <path to the male reference> ^^
