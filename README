@@ -3,6 +3,8 @@ Title: Sex-biased gene expression across tissues reveals unexpected differentiat
 Authors: Florent Sylvestre, Nadia Aubin-Horth, Louis Bernatchez,
 which is currently unpublished.
 
+Corresponding author: Florent Sylvestre, flosylv@hotmail.fr
+
 It consist of 4 main folders:
 
 1) STAR_alignment contain all the script needed to reproduce alignement to the threespine stickleback reference genome and gene expression quantification for each tissue
@@ -12,6 +14,8 @@ It consist of 4 main folders:
 4)Analyses makes use of results from all three precedent folder to reproduce analyses presented in the manuscript.
 
 Finally, the Utils forlder contain some script usefull for converting data between format or removing pseudo-autosomal region from our reference
+
+Detailled information for each part is available in correspondant subfolder
 
 
 Usefull information:
