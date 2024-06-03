@@ -1,2 +1,35 @@
-#Script compendium associated with the unpublisher paper 
-"BreadcrumbsSex-biased_gene_expression_in_the_three_spined_stickleback"
+This Github repository explain how to reproduce analysis presented in 
+Title: Sex-biased gene expression across tissues reveals unexpected differentiation in the gills of the threespine stickleback
+Authors: Florent Sylvestre1, Nadia Aubin-Horth, Louis Bernatchez,
+which is currently unpublished.
+
+It consist of 4 main folders:
+
+1) STAR_alignment contain all the script needed to reproduce alignement to the threespine stickleback reference genome and gene expression quantification for each tissue
+2) Genome annotation contain all the script used to link each annotated genes in the threespined stickleback genome to an Uniprot entry, and extract gene function and ontology
+3) Gene_relationship_sexchr contain all the script used to identify gene still sharing (or not) a copy between sex-chromosome of the threespine sticleback
+
+4)Analyses makes use of results from all three precedent folder to reproduce analyses presented in the manuscript.
+
+Finally, the Utils forlder contain some script usefull for converting data between format or removing pseudo-autosomal region from our reference
+
+
+Usefull information:
+All analyses are base of the V5 version of the threespine stickleback and its Y reference sequence.
+it is available for download at https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016920845.1/
+Used Annotation file and transcriptome are also available there.
+
+Dependencie:
+Software:
+blastx
+Orthofinder v2.5.5
+STAR v2.7.2b
+HTSeq v0.11.3
+
+Databases:
+Swissprot Database
+Threespine stickleback reference genome: https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_016920845.1/
+Ninespine stickleback reference genome: https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_949316345.1/
+
+R packages:
+
