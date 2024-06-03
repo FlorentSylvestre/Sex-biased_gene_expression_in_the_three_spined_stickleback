@@ -4,7 +4,7 @@
 ########################################
 
 GENOME="03_reference/genome"
-GFF=03_reference/Stickleback
+GFF=$1
 NCPUS=6
 CSD="/prg/picard-tools/1.119/CreateSequenceDictionary.jar"
 
@@ -35,7 +35,7 @@ STAR --runMode genomeGenerate \
     --runThreadN ${NCPUS} \
     --genomeDir "03_reference/STARindex_F/" \
     --genomeFastaFiles ${GENOME}_F.fa \
-    --sjdbGTFfile ${GFF}_noY.gff \
+    --sjdbGTFfile ${GFF} \
     --sjdbGTFtagExonParentTranscript Parent \
     --sjdbGTFfeatureExon exon \
     --genomeChrBinNbits ${BIT_SIZE} \
@@ -45,7 +45,7 @@ STAR --runMode genomeGenerate \
     --runThreadN ${NCPUS} \
     --genomeDir "03_reference/STARindex_M/" \
     --genomeFastaFiles ${GENOME}_M.fa \
-    --sjdbGTFfile ${GFF}_NOPAR.gff \
+    --sjdbGTFfile ${GFF} \
     --sjdbGTFtagExonParentTranscript Parent \
     --sjdbGTFfeatureExon exon \
     --genomeChrBinNbits ${BIT_SIZE} \
