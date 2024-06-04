@@ -9,7 +9,6 @@
 module load star/2.7.2b
 
 #variables:
-GENOME="03_reference/genome"
 OUTPUT="07_star_alignment"
 
 SEX="$1"
