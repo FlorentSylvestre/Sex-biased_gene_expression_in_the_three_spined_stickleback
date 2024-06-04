@@ -1,0 +1,16 @@
+Pipeline to reproduce analysis from the paper:
+
+#SETUP
+ You need to have run STAR_aligment, Genome_annotation,  Gene_relationship_sexchr pipeline first, as this build on their results
+
+In Brain/02_metadata you need:
+sample_sex : tab-separated file containing each brain sample (Cerveau_XX samples in metadata)  and sex
+gene_position: position of each gene in format: CHROM\tSTART\END\NAME
+it can be obtain from gff for exemple using:
+cat ../Genome_annotation/02_sequences/threespined.gff_chr |grep -P "\tgene\t"| cut -f1,4,5,9| sed "s/ID=//"| sed "s/;.*//" | sed "s/gene-//" >Brain/02_metadata/gene_position
+
+blacklisted_genes containing genes from sex chromosome to analyse separatedly
+
+grep -P "chrXIX\t" Brain/02_metadata/gene_position |cut -f4 >Brain/02_metadata/blacklisted_genes
+grep -P "Y\t" Brain/02_metadata/gene_position |cut -f4 >>Brain/02_metadata/blacklisted_genes
+
