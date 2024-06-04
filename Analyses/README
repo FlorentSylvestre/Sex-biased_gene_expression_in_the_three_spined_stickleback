@@ -101,8 +101,13 @@ Rscript 01_script/02_PCA.R
 ################################################################################################################
 ################################################################################################################
 Reproducing Figures:
+#SETUP:
+In 02_data: put the gene position file created for the other folder (i.e Brain) named gene_position
 
+#Anallysis:
 
+1) Rscript Figure_1_Table_gene_expression.R
+2) Rscript Figures_1_to_4.R
 
 
 
