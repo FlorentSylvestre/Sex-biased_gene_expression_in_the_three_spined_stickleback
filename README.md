@@ -6,7 +6,7 @@ which is currently unpublished.
 Corresponding author: Florent Sylvestre, flosylv@hotmail.fr
 Don't hesitate to contact me if you have questions
 
-DOI: 10.5281/zenodo.11477976
+[![DOI](https://zenodo.org/badge/787045413.svg)](https://zenodo.org/doi/10.5281/zenodo.11477975)
 
 
 
