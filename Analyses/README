@@ -40,4 +40,42 @@ END
 For Brain and Gills, the setup is the same using "Foie_counts" and "Branchie_counts" respectively.
 
 ADDITIONAL STEP IN GILLS ANALYSIS:
+As Gills yielded surprising result concerning GO annotation, we created a table of all gene present in GO of interest. For Taht you need a file in 07_GO_analysis named GO_of_interest
+
+it contains:
+.....GO:0099537
+....GO:0099536
+......GO:0098916
+.......GO:0007268
+.....GO:0051962
+.....GO:0050804
+....GO:0099177
+.....GO:0051960
+....GO:1902652
+......GO:0099174
+.......GO:1905606
+...GO:0050877
+........GO:0035249
+...GO:0008038
+......GO:0051965
+.....GO:0050808
+......GO:0072578
+......GO:0050772
+......GO:0050769
+......GO:0050767
+....GO:0007158
+....GO:0070593
+.....GO:0050806
+...GO:0048167
+....GO:0007214
+.....GO:1903859
+....GO:0030182
+...GO:0099003
+......GO:0051963
+...GO:0048512
+
+Then run from Gills directory:
+python3 01_script/06_parse_list_go.py 07_GO_analysis/GO_of_interest 07_GO_analysis/parsed_GO_of_interest.txt
+
+
 
