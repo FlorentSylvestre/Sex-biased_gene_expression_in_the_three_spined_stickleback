@@ -1,0 +1,18 @@
+Pipeline to extract gene function from threespine stickleback transcript and GFF annotation
+
+#SETUP:
+In 02_sequences:
+two files, the Stickleback_chr.gff (see STAR_aligment pipeline for instruction) and the transcriptome.fa obtain from NCBI
+In 99_swissprot_db a swissprot database
+
+##Running pipeline:
+1) Blasting on uniprot
+./01_script/01_bast_against_swissprot.sh
+
+2) extract swissprot intro:
+./01_script/02_extract_swissprot_infos.sh
+
+and 3) Annotate the gff
+This step agregate swissprot info for each transcript at the gene level
+
+./01/script/03_annotate_gff.py
