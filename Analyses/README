@@ -14,16 +14,17 @@ cat ../Genome_annotation/02_sequences/threespined.gff_chr |grep -P "\tgene\t"| c
 grep -P "chrXIX\t" Brain/02_metadata/gene_position |cut -f4 >Brain/02_metadata/blacklisted_genes
 grep -P "Y\t" Brain/02_metadata/gene_position |cut -f4 >>Brain/02_metadata/blacklisted_genes
 
-4) coverage_sample file from the STAR pipeline
+4) coverage_sample file from the STAR pipeline for Brain samples only:
+grep Cerveau ../STAR_aligment/coverage_sample.txt >Brain/02_metadata/coverage_sample
 
-In Brain/03_data you needL
-1) The Cerveau_counts file from the STAR pipeline
+In Brain/03_data you need
+1) The Cerveau_counts.txt file from the STAR pipeline
 2)The GO_table_gene file from the Genome annotation pipeline
 
 To run analysis:
-
+From the Brain folder:
 STEP1: FILTERING
-Rscript 01_script/01_filter_gene_expression.R 03_data/Cerveau_counts 02_metadata/coverage_sample 5000000 1 10 02_metadata/blacklisted_genes
+Rscript 01_script/01_filter_gene_expression.R 03_data/Cerveau_counts.txt 02_metadata/coverage_sample 5000000 1 10 02_metadata/blacklisted_genes
 
 STEP2: PCA (NOT SHOWN IN PAPER)
 Rscript 01_script/02_PCA.R
@@ -37,7 +38,8 @@ Rscript 01_script/04_extract_signif_genes.R
 
 END
 
-For Brain and Gills, the setup is the same using "Foie_counts" and "Branchie_counts" respectively.
+For Brain and Gills, the setup is the same using "Foie_counts.txt" and "Branchie_counts.txt" respectively. 
+sample metadata correspond to Foie_XX samples and Branchie_XX samples
 
 ADDITIONAL STEP IN GILLS ANALYSIS:
 As Gills yielded surprising result concerning GO annotation, we created a table of all gene present in GO of interest. For Taht you need a file in 07_GO_analysis named GO_of_interest
@@ -76,6 +78,51 @@ it contains:
 
 Then run from Gills directory:
 python3 01_script/06_parse_list_go.py 07_GO_analysis/GO_of_interest 07_GO_analysis/parsed_GO_of_interest.txt
+
+################################################################################################################
+################################################################################################################
+
+SETUP FOR all_tissue
+In 02_metadata:
+Same as brain, except that sample metadata and coverage_sample includes all sample.
+
+in 03_data:
+You need the _counts.txt file
+
+Run analysis:
+From all_tissue folder
+STEP1: Filtering:
+Rscript 01_script/01_filter_gene.R 03_data/_counts.txt 02_metadata/coverage_sample 5000000 1 10 02_metadata/blacklisted_genes
+
+STEP2: PCA
+Rscript 01_script/02_PCA.R
+
+
+################################################################################################################
+################################################################################################################
+Reproducing Figures:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
