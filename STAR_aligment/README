@@ -85,5 +85,8 @@ Then we need to merge individual sample counts. In our manuscript, we used four 
 3) Gills: merge_samples.R Branchie #10_summarised_gene_counts/Branchie_counts
 4) Liver : merge_samples.R Foie #10_summarised_gene_counts/Foie_counts
 
+Finally, an important step for filtering is to obtain raw coverage information for each sample:
+01_scripts/coverage_analysis.sh
+01_script/parse_coverage.R
  
 
