@@ -10,9 +10,9 @@ Remove the Pseudo-autosomal region from the Y chromosome GFF annotation
 import sys
 
 #Variables:
-GFFs_path = "03_reference/GCF_016920845.1_GAculeatus_UGA_version5_genomic_chr.gff"
-PAR_length = sys.argv[1]
-output_path = sys.argv[2]
+GFFs_path = sys.argv[1]
+PAR_length = sys.argv[2]
+output_path = sys.argv[3]
 
 #main script:
 
