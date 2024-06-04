@@ -80,10 +80,10 @@ cat 02_infos/Male_list |
 parallel -j 4 ./01_scripts/05_STAR_second_pass.sh M  03_reference/Stickleback_NOPAR.gff {}
 
 Then we need to merge individual sample counts. In our manuscript, we used four datasets:
-1) all samples: ./01_scripts/merge_samples.R #10_summarised_gene_counts/_counts
-2) Brain : merge_samples.R Cerveau ##10_summarised_gene_counts/Cerveau_counts
-3) Gills: merge_samples.R Branchie #10_summarised_gene_counts/Branchie_counts
-4) Liver : merge_samples.R Foie #10_summarised_gene_counts/Foie_counts
+1) all samples: ./01_scripts/07_merge_samples.R #10_summarised_gene_counts/_counts
+2) Brain : ./01_scripts/07_merge_samples.R Cerveau ##10_summarised_gene_counts/Cerveau_counts
+3) Gills: ./01_scripts/07_merge_samples.R Branchie #10_summarised_gene_counts/Branchie_counts
+4) Liver : ./01_scripts/07_merge_samples.R Foie #10_summarised_gene_counts/Foie_counts
 
 Finally, an important step for filtering is to obtain raw coverage information for each sample:
 01_scripts/coverage_analysis.sh
