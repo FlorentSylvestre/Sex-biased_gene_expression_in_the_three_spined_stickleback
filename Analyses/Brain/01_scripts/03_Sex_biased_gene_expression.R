@@ -31,14 +31,8 @@ Normalize<- function(count_matrix){
 }
 
 #####################
-##Parse User input:##
+##Input files:#######
 #####################
-#args = commandArgs(trailingOnly = T)
-#count_path = args[1]
-#grouping_path = args[2]
-#qval_thresh = as.numeric(args[3])
-#LFC_thresh = as.numeric(args[4])
-
 count_path = "04_filtered/gene_count_filtered"
 grouping_path = "02_metadata/clean_sample_sex"
 qval_thresh = 0.05
