@@ -32,6 +32,7 @@ STAR v2.7.2b
 HTSeq v0.11.3
 FastQC v0.11.8
 fastp v0.15.0
+samtools  v1.10
 
 Databases:
 Swissprot Database
