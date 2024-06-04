@@ -10,14 +10,14 @@ names(colors) = c("Males", "Females")
 
 #Importing subplots:
 PCA <- readRDS("../all_tissue/05_PCA/PCA.RDS")
-Liver_auto_volc <- readRDS("../Foie/06_differential_expression/auto_volcano.RDS")
-Brain_auto_volc <- readRDS("../Cerveau/06_differential_expression/auto_volcano.RDS")
-Gills_auto_volc <- readRDS("../Branchie/06_differential_expression/auto_volcano.RDS")
+Liver_auto_volc <- readRDS("../Liver/06_differential_expression/auto_volcano.RDS")
+Brain_auto_volc <- readRDS("../Brain/06_differential_expression/auto_volcano.RDS")
+Gills_auto_volc <- readRDS("../Gills/06_differential_expression/auto_volcano.RDS")
 
 #Importing differential expression reports:
-Liver_rep <- read.table("../Foie/06_differential_expression/report.txt", h = T)
-Brain_rep <- read.table("../Cerveau/06_differential_expression/report.txt", h = T)
-Gills_rep <- read.table("../Branchie/06_differential_expression/report.txt", h = T)
+Liver_rep <- read.table("../Liver/06_differential_expression/report.txt", h = T)
+Brain_rep <- read.table("../Brain/06_differential_expression/report.txt", h = T)
+Gills_rep <- read.table("../Gills/06_differential_expression/report.txt", h = T)
 
 #Venn Diagram
 signif_Liver <- Liver_rep %>% filter(signif != FALSE) %>% pull(gene)
