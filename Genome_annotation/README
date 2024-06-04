@@ -12,7 +12,11 @@ In 99_swissprot_db a swissprot database
 2) extract swissprot intro:
 ./01_script/02_extract_swissprot_infos.sh
 
+3)Annotate at the transcript level (WARNING PYTHON2)
+python2 ./01_script/03_annotate_transcript.py transcriptome.fa 04_annotations_transcript/genbank_info 05_annotation_table/GO_table_tr
+
+
 and 3) Annotate the gff
 This step agregate swissprot info for each transcript at the gene level
 
-./01/script/03_annotate_gff.py
+python3 ./01/script/03_annotate_gff.py
