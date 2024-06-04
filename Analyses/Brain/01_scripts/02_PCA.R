@@ -17,13 +17,8 @@ library(ggplot2)
 library(magrittr)
 
 #####################
-##Parse User input:##
+##Input files:#######
 #####################
-#args = commandArgs(trailingOnly = T)
-#count_path = args[1]
-#grouping_path = args[2]
-#grouping_name = args[3]
-
 count_path = "04_filtered/gene_count_filtered"
 grouping_path = "02_metadata/clean_sample_sex"
 grouping_name = "Sex"
