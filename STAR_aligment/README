@@ -1,14 +1,89 @@
 Pipeline used to clean, trim align and counts reads
 
+
 Setup:
 In 02_infos, you'll need:
 A) a file with all correspondance between sample names and sex (can be created from the medatafile)
-B) From that, you can create a file with all female sample names and another one with all male sample names
+B) From that, you can create a file with all female sample names and another one with all male sample names names Female_list and Male_list
 
-In 03_Reférence you'll need:
-1)The annotation in GFF format
-2) A Female reference genome without the Y
-3) A Male reference genome including the Y but without the first 0.34Mb (the pseudoautosomal region, already present of the X reference)
-to exclude the pseudo autosomal region from the Y, you can use samtools faidx:
-samtools faidx <path the the male reference> #This will first create an index for the file
-samtools faidx <path to the male reference> ^^
+In 03_References you'll need:
+1)The annotation in GFF format named Stickleback.gff
+2) A Female reference genome without the Y named genome_F.fa
+3) The Y stickleback reference genome named Y.fa
+/!\ Script will used and search for these name, so check that they are correct
+
+if your GFF is using accession number instead of chrom name, you acn convert it using:
+../Utils/conv_accession_to_num.sh 03_reference/Stickleback.gff chr
+which will create 03_reference/Stickleback.gff_chr
+
+
+To replicate our study, you then need to trim the Y reference of the pseudo-autosomal region. This can be done using samtools:
+  samtools faidx genome_F.fa #This will first create an index for the file
+  samtools faidx Y.fa chrY:340000- >Y_noPAR.fasta #This will exclude the first 0.34Mb from this reference
+  sed -i "s/>*/>Y/" Y_noPAR.fa #rename the chromosome to its original name
+
+Then you can create your male reference:
+cat Genome_F.fa Y_noPAR.fa >Genome_M.fa
+
+Finally, you'll need all the raw read files in the 04_raw_data folder.
+
+
+##Running the pipeline:
+
+/!\ Note that path to software and number of CPU can change depending on your setup, be sure to update them to match your configuration /!\
+
+STEP1: Running fastQC:
+Create a file list all the file you want to check:
+ls 04_raw_data/*.fastq.gz >02_infos/List_fastQC
+01_scripts/01_fastQC.sh 02_infos/List_fastQC 4
+4 is the number of thread that will be used, adapt it to your needs
+The reports will be writen in 05_fastqc
+
+STEP2: Trim and clean reads using fastp:
+02_fastp.sh 02_infos/List_fastQC
+will output new fasta files in 06_fastp
+
+STEP3 : Indexing the genomes
+You need to create a female GFF without the Y:
+grep -Pv "Y\t" 03_Reference/Stickleback.gff_chr >03_Reference/Stickleback_noY.gff
+
+Then run
+./01_scripts/03_STAR_index.sh 03_Reference/Stickleback_noY.gff
+
+STEP4: Running STAR First pass
+This script is built to run on one file at a  time but benefit from GNU parallel:
+cat 02_infos/Male_list |
+parallel -j 4 ./01_scripts/04_STAR_first_pass.sh M {} 3
+3 being the number of CPU to use PER file and 4 the number of job running at the same time
+Adjust to your setup
+
+Same for female sample:
+cat 02_infos/Female_list |
+parallel -j 4 ./01_scripts/04_STAR_first_pass.sh F {} 3
+
+STEP5: Running STAR second pass runs exactly the same:
+cat 02_infos/Female_list |
+parallel -j 4 ./01_scripts/05_STAR_second_pass.sh F {} 3
+
+cat 02_infos/Male_list |
+parallel -j 4 ./01_scripts/05_STAR_second_pass.sh M {} 3
+
+STEP6: Estimating READ counts:
+For this step, you first need to generate a new GFF for males, with the Y but without the PAR:
+../Utils/remove_PAR_gff.py 03_reference/Stickleback.gff_chr 340000  03_reference/Stickleback_NOPAR.gff
+
+Then we can run HTseq:
+cat 02_infos/Female_list |
+parallel -j 4 ./01_scripts/06_HTseq.sh F 03_reference/Stickleback_NOPAR.gff {}
+
+cat 02_infos/Male_list |
+parallel -j 4 ./01_scripts/05_STAR_second_pass.sh M  03_reference/Stickleback_NOPAR.gff {}
+
+Then we need to merge individual sample counts. In our manuscript, we used four datasets:
+1) all samples: ./01_scripts/merge_samples.R #10_summarised_gene_counts/_counts
+2) Brain : merge_samples.R Cerveau ##10_summarised_gene_counts/Cerveau_counts
+3) Gills: merge_samples.R Branchie #10_summarised_gene_counts/Branchie_counts
+4) Liver : merge_samples.R Foie #10_summarised_gene_counts/Foie_counts
+
+ 
+
