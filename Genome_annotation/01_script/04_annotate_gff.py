@@ -1,6 +1,6 @@
 #!/bin/python3
 ##Script that annotate gene based on gawn annotation table and gff_file
-##Usage: python3 annotate_gene.py annotation_table GCF_file output
+##Usage: python3 annotate_gene.py accession annotation_table_tr GCF_file output
 
 #Modules:
 import sys
@@ -51,13 +51,13 @@ class gene_infos:
 
 
 #parsing user input:
-accession_path = sys.argv[1]
-GO_path = sys.argv[2]
-GFF3_path = sys.argv[3]
-output_path = sys.argv[4]
+accession_path = "03_blast_results/analyzed_genes.hits"
+GO_path = "05_annotation_table/GO_table_tr"
+GFF3_path = "02_sequences/Stickleback_chr.gff"
+output_path = "05_annotation_table/GO_table_gene"
 
 #FIXED
-annotation_path = "05_annotations/genbank_info/"
+annotation_path = "04_annotations_transcript/genbank_info/"
 
 #parsing GFF3:
 transcript = defaultdict(lambda: defaultdict(list))
