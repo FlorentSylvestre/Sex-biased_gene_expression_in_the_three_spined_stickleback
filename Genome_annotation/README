@@ -1,5 +1,8 @@
 Pipeline to extract gene function from threespine stickleback transcript and GFF annotation
 
+Note that most of this pipeline is adapted from https://github.com/enormandeau/gawn and https://github.com/enormandeau/go_enrichment
+
+
 #SETUP:
 In 02_sequences:
 two files, the Stickleback_chr.gff (see STAR_alignment pipeline for instruction) and the transcriptome.fa obtain from NCBI
