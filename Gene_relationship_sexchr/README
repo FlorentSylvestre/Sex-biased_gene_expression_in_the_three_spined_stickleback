@@ -1,0 +1,27 @@
+Script to describe gene orthology / paralogy between X and Y sex chromosome in the threespine stickleback
+
+
+#SETUP
+In 02_reference put:
+1) The stickleback_chr.gff file (See STAR_aligment)
+2) A complete reference genome INCLUDING the pseudoautosomal region this time
+If your reference and Y come separately, do :
+cat genome_F.fa Y.fa >genome.fa to concatenate them 
+Make sure that all chromosome name between gff and reference genome match 
+
+You also need the ninespine genome (ninespine_genome.fa) and gff (ninespine.gff)
+Again, make sure the chromosome name match between the two files
+
+Then you can run:
+./01_script/01_extract_transcript_prot.sh 02_reference/stickleback_chr.gff 02_reference/genome.fa
+
+./01_script/01_extract_transcript_prot.sh 02_reference/ninespine.gff 02_reference/ninespine_genome.fa
+
+
+Then:
+./01_script/run_02_run_Orthofinder
+
+And finally:
+01_script/03_parse_relationship.py 02_reference/stickleback_chr.gff "04_protein/Orthofinder/Results_Oct27"
+/!!!!!!\ ADJUST Result_Oct27 to the date you ran it !!!!!!!!! check in 04_protein/ to know which one to use
+
