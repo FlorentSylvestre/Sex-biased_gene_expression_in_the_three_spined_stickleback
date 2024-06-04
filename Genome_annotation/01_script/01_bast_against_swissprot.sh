@@ -4,7 +4,7 @@
 SEQUENCE_FILE=02_sequences/transcriptome.fa
 SWISSPROT_RESULT=03_blast_results/analyzed_genes.swissprot
 SWISSPROT_HITS=03_blast_results/analyzed_genes.hits
-SWISSPROT_DB=../../../Ressources_genomique/swissprot_db/swissprot
+SWISSPROT_DB=99_swissprot_db/swissprot
 
 # Blast all sequences against swissprot (must be installed locally)
 # WARNING use `-j N` if you need to limit the number of CPUs used to N <integer>
