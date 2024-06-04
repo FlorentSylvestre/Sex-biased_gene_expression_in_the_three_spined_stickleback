@@ -4,13 +4,40 @@ Pipeline to reproduce analysis from the paper:
  You need to have run STAR_aligment, Genome_annotation,  Gene_relationship_sexchr pipeline first, as this build on their results
 
 In Brain/02_metadata you need:
-sample_sex : tab-separated file containing each brain sample (Cerveau_XX samples in metadata)  and sex
-gene_position: position of each gene in format: CHROM\tSTART\END\NAME
+1)sample_sex : tab-separated file containing each brain sample (Cerveau_XX samples in metadata)  and sex
+
+2)gene_position: position of each gene in format: CHROM\tSTART\END\NAME
 it can be obtain from gff for exemple using:
 cat ../Genome_annotation/02_sequences/threespined.gff_chr |grep -P "\tgene\t"| cut -f1,4,5,9| sed "s/ID=//"| sed "s/;.*//" | sed "s/gene-//" >Brain/02_metadata/gene_position
 
-blacklisted_genes containing genes from sex chromosome to analyse separatedly
-
+3)blacklisted_genes containing genes from sex chromosome to analyse separatedly
 grep -P "chrXIX\t" Brain/02_metadata/gene_position |cut -f4 >Brain/02_metadata/blacklisted_genes
 grep -P "Y\t" Brain/02_metadata/gene_position |cut -f4 >>Brain/02_metadata/blacklisted_genes
+
+4) coverage_sample file from the STAR pipeline
+
+In Brain/03_data you needL
+1) The Cerveau_counts file from the STAR pipeline
+2)The GO_table_gene file from the Genome annotation pipeline
+
+To run analysis:
+
+STEP1: FILTERING
+Rscript 01_script/01_filter_gene_expression.R 03_data/Cerveau_counts 02_metadata/coverage_sample 5000000 1 10 02_metadata/blacklisted_genes
+
+STEP2: PCA (NOT SHOWN IN PAPER)
+Rscript 01_script/02_PCA.R
+
+STEP3: SEX_biased gene expression analysis:
+Rscript 01_script/03_Sex_biased_gene_expression.R
+
+STEP4: Gene Ontology analysis:
+Rscript 01_script/04_extract_signif_genes.R
+./01_script/05_goatools.sh
+
+END
+
+For Brain and Gills, the setup is the same using "Foie_counts" and "Branchie_counts" respectively.
+
+ADDITIONAL STEP IN GILLS ANALYSIS:
 
