@@ -2,7 +2,7 @@ Pipeline to extract gene function from threespine stickleback transcript and GFF
 
 #SETUP:
 In 02_sequences:
-two files, the Stickleback_chr.gff (see STAR_aligment pipeline for instruction) and the transcriptome.fa obtain from NCBI
+two files, the Stickleback_chr.gff (see STAR_alignment pipeline for instruction) and the transcriptome.fa obtain from NCBI
 In 99_swissprot_db a swissprot database
 
 ##Running pipeline:

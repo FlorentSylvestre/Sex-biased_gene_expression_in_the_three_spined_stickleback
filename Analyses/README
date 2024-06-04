@@ -1,7 +1,7 @@
 Pipeline to reproduce analysis from the paper:
 
 #SETUP
- You need to have run STAR_aligment, Genome_annotation,  Gene_relationship_sexchr pipeline first, as this build on their results
+ You need to have run STAR_alignment, Genome_annotation,  Gene_relationship_sexchr pipeline first, as this build on their results
 
 In Brain/02_metadata you need:
 1)sample_sex : tab-separated file containing each brain sample (Cerveau_XX samples in metadata)  and sex
@@ -15,7 +15,7 @@ grep -P "chrXIX\t" Brain/02_metadata/gene_position |cut -f4 >Brain/02_metadata/b
 grep -P "Y\t" Brain/02_metadata/gene_position |cut -f4 >>Brain/02_metadata/blacklisted_genes
 
 4) coverage_sample file from the STAR pipeline for Brain samples only:
-grep Cerveau ../STAR_aligment/coverage_sample.txt >Brain/02_metadata/coverage_sample
+grep Cerveau ../STAR_alignment/coverage_sample.txt >Brain/02_metadata/coverage_sample
 
 In Brain/03_data you need
 1) The Cerveau_counts.txt file from the STAR pipeline
