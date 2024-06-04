@@ -380,7 +380,7 @@ Figure_5 <- Res2 %>%
   theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0.2)) +
   scale_color_manual(values = colorscheme)
 
-    ggsave("Script/Figures/Figure_5.png",
+    ggsave("99_FiguresFigure_5.png",
        plot = Figure_5,
        device = "png",
        width = 17.9,
@@ -388,13 +388,19 @@ Figure_5 <- Res2 %>%
        units = "cm",
        dpi = 300)
 
-    ggsave("Script/Figures/Figure_5.pdf",
+    ggsave("99_Figures/Figure_5.pdf",
        plot = Figure_5,
        device = "pdf",
        width = 17.9,
        height = 10,
        units = "cm",
        dpi = 300)
+
+  write.table(Res2,
+              "99_Figures/Table_S9",
+              row.names = F,
+              col.names = T,
+              quote = F)
   
 #########################################
 #######Allele specific gene expression###
@@ -497,4 +503,9 @@ c(tiss, "FBG", "Y", wilcox.test(Mean.M.Y.FBG.soft,Mean.M.Y.none)$p.value),
 c(tiss, "FBG", "XY", wilcox.test(Mean.M.XY.FBG.soft,Mean.M.XY.none)$p.value))
 }
 Res <- do.call(rbind, Res)
+write.table(Res,
+            "99_Figures/Figure_6_signif_table",
+            quote = F,
+            row.names =F,
+            col.names =T)
 
