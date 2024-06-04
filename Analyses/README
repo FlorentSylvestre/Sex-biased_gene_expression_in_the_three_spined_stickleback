@@ -108,6 +108,7 @@ In 02_data: put the gene position file created for the other folder (i.e Brain) 
 
 1) Rscript Figure_1_Table_gene_expression.R
 2) Rscript Figures_1_to_4.R
+3) Rscript Figure_5_6.R
 
 
 
