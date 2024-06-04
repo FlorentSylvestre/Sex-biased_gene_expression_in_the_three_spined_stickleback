@@ -19,9 +19,9 @@ Then you can run:
 
 
 Then:
-./01_script/run_02_run_Orthofinder
+./01_script/run_02_run_Orthofinder.sj
 
 And finally:
-01_script/03_parse_relationship.py 02_reference/stickleback_chr.gff "04_protein/Orthofinder/Results_Oct27"
+python 3 01_script/03_parse_relationship.py 02_reference/stickleback_chr.gff "04_protein/Orthofinder/Results_Oct27"
 /!!!!!!\ ADJUST Result_Oct27 to the date you ran it !!!!!!!!! check in 04_protein/ to know which one to use
 
