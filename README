@@ -6,6 +6,9 @@ which is currently unpublished.
 Corresponding author: Florent Sylvestre, flosylv@hotmail.fr
 Don't hesitate to contact me if you have questions
 
+DOI: [![DOI](https://zenodo.org/badge/787045413.svg)](https://zenodo.org/doi/10.5281/zenodo.11477975)
+
+
 It consist of 4 main folders:
 
 1) STAR_alignment contain all the script needed to reproduce alignement to the threespine stickleback reference genome and gene expression quantification for each tissue
